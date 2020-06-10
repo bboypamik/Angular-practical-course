@@ -1,1 +1,32 @@
-<p>singnup works!</p>
+
+<h2>Register</h2>
+<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+
+  <div class="form-group">
+    <mat-form-field class="mat-form-field">
+      <mat-label>username</mat-label>
+    <input matInput type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required">Username is required</div>
+    </div>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="mat-form-field">
+      <mat-label>password</mat-label>
+    <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div class="error" *ngIf="f.password.errors.required">Password is required</div>
+      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+    </div>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <button mat-button [disabled]="!registerForm.valid" [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Register
+    </button>
+    <a routerLink="/login-form" mat-button class="btn btn-link">Cancel</a>
+  </div>
+</form>

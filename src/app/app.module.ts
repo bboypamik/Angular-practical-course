@@ -15,9 +15,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {HttpClientModule} from "@angular/common/http";
 
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+
 
 
 

@@ -2,17 +2,14 @@
 
   <mat-toolbar color="accent"  class=“spanner”>
     <div>
-      <a class="nav-item nav-link" routerLink="/"><h1>{{title}}</h1></a>
+      <a class="nav-item nav-link" routerLink="/" ><h1>{{title}}</h1></a>
 
     </div>
+
 
 <div *ngIf="currentUser">
 <button mat-raised-button (click)="logout()">logout</button>
 </div>
-
-  <div *ngIf="!currentUser">
- <button routerLink="login-form" routerLinkActive="active"  mat-raised-button type="submit">login</button>
-  </div>
 
   </mat-toolbar>
 </header>

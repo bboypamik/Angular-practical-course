@@ -4,6 +4,8 @@ import {HeaderComponent} from "./components/header/header.component";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 
@@ -12,23 +14,21 @@ import {RouterModule} from "@angular/router";
     HeaderComponent,
 
 
+
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
     MatButtonModule,
     RouterModule,
-
-
+    MatSnackBarModule,
 
   ],
   exports: [
     HeaderComponent,
+  ],
 
 
-
-
-  ]
 
 
 })
