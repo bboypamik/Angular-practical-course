@@ -1,0 +1,102 @@
+<br><br><br>
+
+<main class="calendar-contain">
+
+  <section class="title-bar">
+
+    <span class="title-bar__year">
+     {{date | date : "EEEE, MMMM d"}}  <br>
+     <h3> {{date | date : "yyyy" }}</h3>
+    </span>
+    <span class="header-months">
+
+        <button (click)="changeMonth(-1)" [disabled]="currentMonth<=0" class="month-button-back mat-mini-fab"
+                type="button"> < </button>
+
+      {{months[currentMonth][0]}}
+
+      <button (click)="changeMonth(1)" [disabled]="currentMonth>=11" class="month-button-next mat-mini-fab"
+              type="button"> > </button>
+
+    </span>
+  </section>
+
+  <aside class="calendar__sidebar">
+    <p class="sidebar__heading">{{selectedDate | date: "EEEE, MMMM d" }}</p>
+    <table class="todo-table">
+
+    <ng-container *ngFor="let todo of todos let i = index">
+
+        <tr *ngIf="(todo.date_time | date: 'shortDate') == (selectedDate | date:'shortDate')" >
+
+
+        <td class="sidebar__list-item  todo-item">{{todo.todo_item}}</td>
+
+
+        <td class="todo-delete">
+          <button (click)="onDelete(todo.id, i)" color="warn" mat-mini-fab>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+        </tr>
+
+</ng-container>
+    </table>
+
+    <form (ngSubmit)="addNewItem()" [formGroup]="addItem" class="todo-form">
+
+      <div class="form-group">
+
+        <mat-form-field class="mat-form-field">
+          <mat-label>Add New Item</mat-label>
+          <input class="form-control" formControlName="addNewItem" matInput type="text"/>
+        </mat-form-field>
+      </div>
+      <div>
+        <button [disabled]="!addItem.valid" color="warn" mat-raised-button>Add</button>
+      </div>
+    </form>
+  </aside>
+
+
+  <section class="calendar__days">
+    <section class="calendar__top-bar">
+      <span class="top-bar__days">Sun</span>
+      <span class="top-bar__days">Mon</span>
+      <span class="top-bar__days">Tue</span>
+      <span class="top-bar__days">Wed</span>
+      <span class="top-bar__days">Thu</span>
+      <span class="top-bar__days">Fri</span>
+      <span class="top-bar__days">Sat</span>
+    </section>
+
+
+    <mat-grid-list cols="7">
+
+      <div *ngFor="let day of arrayOfDays">
+
+        <div [class.current-day]="currentMonth == date.getMonth() && day == date.getDate()">
+
+          <mat-grid-tile (click)="getTodosByDay(day, currentMonth, date.getFullYear())" [class.clicked-date]="(selectedDate | date: 'd') == day"  class="date-tile">
+            {{day}}
+            <ng-container *ngFor="let todo of todos">
+              <ng-container *ngIf="((todo.date_time | date: 'd') ==  day) && (todo.date_time | date: 'M') == currentMonth +1">
+            <p class="recka">|</p>
+
+              </ng-container>
+            </ng-container>
+
+
+          </mat-grid-tile>
+        </div>
+      </div>
+
+    </mat-grid-list>
+
+
+  </section>
+
+
+</main>
+
+

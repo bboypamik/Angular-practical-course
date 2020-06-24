@@ -13,10 +13,7 @@ export class UserService {
   }
 
   register(username, password) {
-    return this.http.post<any>('http://ng-todo.local/register.php', {username, password});
+    return this.http.post<any>('http://ng-todo.local/register', {username, password});
   }
 
-  // delete(id) {
-  //   return this.http.delete('http://ng-todo.local/delete.php?${id}');
-  // }
 }

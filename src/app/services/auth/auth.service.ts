@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {Router} from "@angular/router";
@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('http://ng-todo.local/login.php', {username, password})
+    return this.http.post<any>('http://ng-todo.local/login', {username, password})
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);

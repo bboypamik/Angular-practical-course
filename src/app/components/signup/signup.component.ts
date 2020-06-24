@@ -3,8 +3,8 @@ import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {first} from "rxjs/operators";
 
-import {UserService} from "../../../core/services/user/user.service";
-import {AuthService} from "../../../core/services";
+import {UserService} from "../../services/user/user.service";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-signup',
@@ -34,8 +34,6 @@ export class SignupComponent implements OnInit {
   }
 
   get f() { return this.registerForm.controls;}
-
-
 
   onSubmit() {
     this.submitted = true;
